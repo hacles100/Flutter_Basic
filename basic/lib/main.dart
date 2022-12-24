@@ -1,27 +1,72 @@
 import 'package:flutter/material.dart';
 
-main(){
-  runApp(AppWidget());
+void main(){
+  runApp(
+    const MaterialApp(
+      title: 'My App',
+      home: SafeArea(
+        child: MyScaffold(),
+      ),
+    ),
+  );
 }
 
-class AppWidget extends StatelessWidget {
-  const AppWidget({super.key});
+class MyAppBar extends StatelessWidget {
+  const MyAppBar({required this.title, super.key});
+
+   final Widget title;
+
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(
-      child: Text(
-      'Gabaritado',
-      textDirection: TextDirection.ltr,
-      style: TextStyle(
-        fontSize: 50,
-        color: Colors.white,
-        backgroundColor: Colors.red,
-        ),
-      ),
-    ),
+      height: 56.0,
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      decoration: BoxDecoration(color: Colors.blue[500]),
+      child: Row(
+        children: [
+          const IconButton(
+            icon: Icon(Icons.menu),
+            tooltip: 'Navigation menu',
+            onPressed: null,
+          ),
 
+          const IconButton(
+            icon: Icon(Icons.search),
+            tooltip: 'Search ',
+            onPressed: null,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+class MyScaffold extends StatelessWidget {
+  const MyScaffold({super.key});
+
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: Column(
+        children: [
+          MyAppBar(
+            title: Text(
+              'Example title',
+              style: Theme.of(context).primaryTextTheme.headline6,
+            ),
+          ),
+
+          const Expanded(
+            child: Center(
+              child: Text('Hello World'),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
